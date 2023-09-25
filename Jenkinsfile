@@ -14,7 +14,7 @@ node {
 }
 
 stage('Build image') {
-  app = docker.build("wntpqhd/github")
+  app = docker.build("535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd")
 }
 
 stage('Push image') {
