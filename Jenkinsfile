@@ -6,7 +6,7 @@ node {
          app = docker.build("wntpqhd/github")
      }
      stage('Push image') {
-         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+         docker.withRegistry('535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd', 'arn:aws:iam::535597585675:user/test12') {
              app.push("${env.BUILD_NUMBER}")
              app.push("latest")
          }
@@ -18,7 +18,7 @@ stage('Build image') {
 }
 
 stage('Push image') {
-  docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') 
+  docker.withRegistry('535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd', 'arn:aws:iam::535597585675:user/test12') 
   {
      app.push("${env.BUILD_NUMBER}")
      app.push("latest")
