@@ -1,3 +1,4 @@
+
 node {
      stage('Clone repository') {
          checkout scm
@@ -6,7 +7,7 @@ node {
          app = docker.build("535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd")
      }
      stage('Push image') {
-         docker.withRegistry('https://535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd', 'arn:aws:iam::535597585675:user/test12') {
+         docker.withRegistry('https://535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd', 'ecr:ap-northeast-2:aws-credentials') {
              app.push("${env.BUILD_NUMBER}")
              app.push("latest")
          }
@@ -16,12 +17,9 @@ node {
 stage('Build image') {
   app = docker.build("535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd")
 }
-     stage('Push image') {
-         sh 'rm  ~/.dockercfg || true'
-         sh 'rm ~/.docker/config.json || true'
-          
+
 stage('Push image') {
-  docker.withRegistry('https://535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd', 'arn:aws:iam::535597585675:user/test12') 
+  docker.withRegistry('https://535597585675.dkr.ecr.ap-northeast-2.amazonaws.com/wntpqhd', 'ecr:ap-northeast-2:aws-credentials') 
   {
      app.push("${env.BUILD_NUMBER}")
      app.push("latest")
